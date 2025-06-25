@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Libro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+
+<h2>Registrar Libro</h2>
+
+<form th:action="@{/libros/guardar}" th:object="${libro}" method="post" class="row g-3">
+
+    <!-- Campo oculto para el ID -->
+    <input type="hidden" th:field="*{id}" />
+
+    <!-- Título -->
+    <div class="col-md-6">
+        <label for="titulo" class="form-label">Título</label>
+        <input type="text" id="titulo" th:field="*{titulo}" class="form-control" required />
+    </div>
+
+    <!-- ISBN -->
+    <div class="col-md-6">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input type="text" id="isbn" th:field="*{isbn}" class="form-control" required />
+    </div>
+
+    <!-- Autor -->
+    <div class="col-md-6">
+        <label for="autor" class="form-label">Autor</label>
+        <select id="autor" th:field="*{autor}" class="form-select" required>
+            <option value="">Seleccione un autor</option>
+            <option th:each="a : ${listaAutores}" th:value="${a.id}" th:text="${a.nombre}"></option>
+        </select>
+    </div>
+
+    <!-- Editorial -->
+    <div class="col-md-6">
+        <label for="editorial" class="form-label">Editorial</label>
+        <select id="editorial" th:field="*{editorial}" class="form-select" required>
+            <option value="">Seleccione una editorial</option>
+            <option th:each="e : ${listaEditoriales}" th:value="${e.id}" th:text="${e.nombre}"></option>
+        </select>
+    </div>
+
+    <!-- Botón de guardar -->
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Guardar Libro</button>
+        <a th:href="@{/libros}" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+
+</form>
+
+</body>
+</html>

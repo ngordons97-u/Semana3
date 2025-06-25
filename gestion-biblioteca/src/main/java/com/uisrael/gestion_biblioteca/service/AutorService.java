@@ -9,5 +9,13 @@ public interface AutorService {
     Autor saveAutor(Autor autor);
     void deleteAutor(int id);
     Autor updateAutor(int id, Autor detalle);
+    List<Autor> buscarPorNacionalidad(String nacionalidad);
+    List<Autor> buscarPorNombreParcial(String nombre);
+    List<Autor> buscarAutoresConMasDe(int cantidad);
+   List<Autor> listarAutoresConLibros();
+    List<Autor> listarAutoresOrdenados();
+    List<Autor> buscarAutoresPorLetra(String letra);
+
+
 
 }

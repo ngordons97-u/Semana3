@@ -41,4 +41,40 @@ public class AutorServiceImpl implements AutorService{
         return autorRepository.save(autor);
 	}
 
+	@Override
+	public List<Autor> buscarPorNacionalidad(String nacionalidad) {
+		// TODO Auto-generated method stub
+		return autorRepository.buscarPorNacionalidad(nacionalidad);
+	}
+
+	@Override
+	public List<Autor> buscarPorNombreParcial(String nombre) {
+		// TODO Auto-generated method stub
+		 return autorRepository.buscarPorNombreParcial(nombre);
+	}
+
+	@Override
+	public List<Autor> buscarAutoresConMasDe(int cantidad) {
+		// TODO Auto-generated method stub
+		 return autorRepository.buscarAutoresConMasDe(cantidad);
+	}
+
+	@Override
+	public List<Autor> listarAutoresConLibros() {
+		// TODO Auto-generated method stub
+		 return autorRepository.listarAutoresConLibros();
+	}
+
+	@Override
+	public List<Autor> listarAutoresOrdenados() {
+		// TODO Auto-generated method stub
+		 return autorRepository.listarAutoresOrdenados();
+	}
+
+	@Override
+	public List<Autor> buscarAutoresPorLetra(String letra) {
+		// TODO Auto-generated method stub
+		 return autorRepository.buscarAutoresPorLetra(letra);
+	}
+
 }
