@@ -3,11 +3,16 @@ package com.uisrael.gestion_biblioteca.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uisrael.gestion_biblioteca.entity.Autor;
 import com.uisrael.gestion_biblioteca.repository.AutorRepository;
 import com.uisrael.gestion_biblioteca.service.AutorService;
 
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
 public class AutorServiceImpl implements AutorService{
 
 	@Autowired

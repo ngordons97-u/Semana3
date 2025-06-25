@@ -6,7 +6,7 @@ import com.uisrael.gestion_biblioteca.entity.Miembro;
 
 public interface MiembroService {
     List<Miembro> findAllMiembro();
-    Miembro saveMimebro(Miembro mimebro);
+    Miembro saveMimebro(Miembro miembro);
     void deleteMember(int id);
     Miembro updateMiembro(int id, Miembro detalle);
 }

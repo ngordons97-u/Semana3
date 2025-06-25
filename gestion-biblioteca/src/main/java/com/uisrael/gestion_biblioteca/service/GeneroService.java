@@ -8,6 +8,6 @@ public interface GeneroService {
     List<Genero> findAllGenero();
     Genero saveGenero(Genero genero);
     void deleteGenero(int id);
-    Genero updateGenero(Long id, Genero detalles);
+    Genero updateGenero(int id, Genero detalles);
 
 }

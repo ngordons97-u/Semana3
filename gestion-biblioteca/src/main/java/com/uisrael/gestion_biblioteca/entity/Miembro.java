@@ -28,6 +28,6 @@ public class Miembro {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "miembro", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Prestamos> prestamos = new HashSet<>();
 }

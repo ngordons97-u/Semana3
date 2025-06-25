@@ -24,7 +24,7 @@ public class Prestamos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "miembro_id", nullable = false)
-    private Miembro miebro;
+    private Miembro miembro;
 
     @Column(nullable = false)
     private LocalDate borrowDate;

@@ -43,6 +43,6 @@ public class Libro {
     )
     private Set<Genero> genero = new HashSet<>();
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Prestamos> prestamos = new HashSet<>();
 }

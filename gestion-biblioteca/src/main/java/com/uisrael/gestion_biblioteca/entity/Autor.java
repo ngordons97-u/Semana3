@@ -24,7 +24,7 @@ public class Autor {
     @Column(nullable = false)
     private String nacionalidad;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Libro> libros = new HashSet<>();
 
 }
