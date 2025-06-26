@@ -11,12 +11,14 @@
 <form th:action="@{/autores/guardar}" th:object="${autor}" method="post" class="mb-4">
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Nombre del autor" required>
+        <input type="text" th:field="*{nombre}" id="nombre" class="form-control"  >
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red; font-size: 0.9em;"></span>
     </div>
 
     <div class="mb-3">
         <label for="nacionalidad" class="form-label">Nacionalidad</label>
-        <input type="text" th:field="*{nacionalidad}" class="form-control" id="nacionalidad" placeholder="Ecuador, Colombia..." required>
+        <input type="text" th:field="*{nacionalidad}" id="nacionalidad" class="form-control"  >
+        <span th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}" style="color: red; font-size: 0.9em;"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar</button>

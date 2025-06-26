@@ -4,10 +4,12 @@ import com.uisrael.gestion_biblioteca.entity.Autor;
 import com.uisrael.gestion_biblioteca.repository.AutorRepository;
 import com.uisrael.gestion_biblioteca.service.AutorService;
 
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +39,10 @@ public class AutorController {
 
     // Guardar autor
     @PostMapping("/guardar")
-    public String guardarAutor(@ModelAttribute Autor autor) {
+    public String guardarAutor(@Valid @ModelAttribute Autor autor,BindingResult bindingResult, Model model) {
+		 if (bindingResult.hasErrors()) {
+			 return "autor_form";
+		 }
         autorService.saveAutor(autor);
         return "redirect:/autores";
     }

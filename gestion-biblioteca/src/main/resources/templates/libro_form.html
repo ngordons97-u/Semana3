@@ -10,40 +10,38 @@
 
 <form th:action="@{/libros/guardar}" th:object="${libro}" method="post" class="row g-3">
 
-    <!-- Campo oculto para el ID -->
     <input type="hidden" th:field="*{id}" />
 
-    <!-- Título -->
     <div class="col-md-6">
         <label for="titulo" class="form-label">Título</label>
-        <input type="text" id="titulo" th:field="*{titulo}" class="form-control" required />
+        <input type="text" id="titulo" th:field="*{titulo}" class="form-control" />
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" style="color: red; font-size: 0.9em;"></span>
     </div>
 
-    <!-- ISBN -->
     <div class="col-md-6">
         <label for="isbn" class="form-label">ISBN</label>
-        <input type="text" id="isbn" th:field="*{isbn}" class="form-control" required />
+        <input type="text" id="isbn" th:field="*{isbn}" class="form-control" />
+        <span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" style="color: red; font-size: 0.9em;"></span>
     </div>
 
-    <!-- Autor -->
-    <div class="col-md-6">
-        <label for="autor" class="form-label">Autor</label>
-        <select id="autor" th:field="*{autor}" class="form-select" required>
-            <option value="">Seleccione un autor</option>
-            <option th:each="a : ${listaAutores}" th:value="${a.id}" th:text="${a.nombre}"></option>
-        </select>
+<div class="col-md-6 mb-3"> <label for="autor" class="form-label">Autor</label>
+    <select id="autor" th:field="*{autor}" 
+            class="form-select"
+            th:classappend="${#fields.hasErrors('autor')} ? 'is-invalid' : ''"> <option value="">Seleccione un autor</option>
+        <option th:each="a : ${listaAutores}" th:value="${a.id}" th:text="${a.nombre}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('autor')}" class="invalid-feedback" th:errors="*{autor}"></div> 
     </div>
 
-    <!-- Editorial -->
-    <div class="col-md-6">
-        <label for="editorial" class="form-label">Editorial</label>
-        <select id="editorial" th:field="*{editorial}" class="form-select" required>
-            <option value="">Seleccione una editorial</option>
-            <option th:each="e : ${listaEditoriales}" th:value="${e.id}" th:text="${e.nombre}"></option>
-        </select>
-    </div>
+<div class="col-md-6 mb-3"> <label for="editorial" class="form-label">Editorial</label>
+    <select id="editorial" th:field="*{editorial}" 
+            class="form-select" 
+            th:classappend="${#fields.hasErrors('editorial')} ? 'is-invalid' : ''"> <option value="">Seleccione una editorial</option>
+        <option th:each="e : ${listaEditoriales}" th:value="${e.id}" th:text="${e.nombre}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('editorial')}" class="invalid-feedback" th:errors="*{editorial}"></div> 
+</div>
 
-    <!-- Botón de guardar -->
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Guardar Libro</button>
         <a th:href="@{/libros}" class="btn btn-secondary ms-2">Cancelar</a>

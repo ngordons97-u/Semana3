@@ -4,9 +4,13 @@ import com.uisrael.gestion_biblioteca.entity.Libro;
 import com.uisrael.gestion_biblioteca.service.AutorService;
 import com.uisrael.gestion_biblioteca.service.EditorialService;
 import com.uisrael.gestion_biblioteca.service.LibroService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +26,7 @@ public class LibroController {
     @Autowired
     private EditorialService editorialService;
 
-    // 📚 Mostrar todos los libros
+    // Mostrar todos los libros
     @GetMapping
     public String listarLibros(Model model) {
         List<Libro> listaLibros = libroService.findAllLibro();
@@ -31,7 +35,7 @@ public class LibroController {
         return "lista_libros";
     }
 
-    // ➕ Mostrar formulario para nuevo libro
+    // Mostrar formulario para nuevo libro
     @GetMapping("/nuevo")
     public String mostrarFormulario(Model model) {
         model.addAttribute("libro", new Libro());
@@ -41,21 +45,24 @@ public class LibroController {
         return "libro_form";
     }
 
-    // 💾 Guardar libro (nuevo o editado)
+    // Guardar libro (nuevo o editado)
     @PostMapping("/guardar")
-    public String guardarLibro(@ModelAttribute Libro libro) {
+    public String guardarLibro(@Valid @ModelAttribute Libro libro,BindingResult bindingResult, Model model) {
+		 if (bindingResult.hasErrors()) {
+			 return "libro_form";
+		 }
         libroService.saveLibro(libro);
         return "redirect:/libros";
     }
 
-    // 🗑️ Eliminar libro
+    // Eliminar libro
     @GetMapping("/eliminar/{id}")
     public String eliminarLibro(@PathVariable int id) {
         libroService.deleteLibro(id);
         return "redirect:/libros";
     }
 
-    // ✏️ Mostrar formulario para editar libro
+    //  Mostrar formulario para editar libro
     @GetMapping("/editar/{id}")
     public String editarLibro(@PathVariable int id, Model model) {
         Libro libro = libroService.findAllLibro()
